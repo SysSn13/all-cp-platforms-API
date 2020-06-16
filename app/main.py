@@ -5,9 +5,9 @@ app = Flask(__name__)
 api = Api(app)
 
 
-# @app.route("/")
-# def index():
-#     return "this in the index page"
+@app.route("/")
+def index():
+    return render_template('index.html')
 
 class UserDetails(Resource):
     def get(self,username,platform):
