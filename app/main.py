@@ -15,9 +15,9 @@ class UserDetails(Resource):
         try:
             return user.get_info()
         except UsernameError:
-            return {'status':'failed','details':'Invalid username'}
+            return {'status':'FAILED','comment':'User not found'}
         except PlatformError:
-            return {'status':'failed','details':'Invalid platform'}
+            return {'status':'FAILED','comment':'Platform not found'}
 
 
 api.add_resource(UserDetails,'/api/<string:platform>/<string:username>')
