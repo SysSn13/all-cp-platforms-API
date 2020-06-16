@@ -83,6 +83,31 @@ class User:
                     val = val.split()[0]
                     data[attr]=val
         return data
+    def spoj(self):
+        url = "https://www.spoj.com/users/{}/".format(self.__username)
+        session = HTMLSession()
+        r = session.get(url)
+        if r.status_code !=200:
+            raise UsernameError("User not found")
+        user_profile_left = r.html.find("#user-profile-left")
+        if not len(user_profile_left):
+            raise UsernameError
+        user_profile_left = user_profile_left[0]
+        data = dict()
+        data['status'] = 'OK'
+        data['full_name'] = user_profile_left.find('h3',first=True).text
+        data['img_src'] =   user_profile_left.find('img')[0].attrs['src']
+        p_data = user_profile_left.find('p')
+        data['location'] = p_data[0].text
+        data['joined'] = p_data[1].text.replace("Joined ","")
+        data['world_rank'] = p_data[2].text.split()[2][1:]
+        data['institution'] =  p_data[3].text.replace("Institution: ","")
+        data_stats = r.html.find('.profile-info-data-stats',first=True)
+        dts = data_stats.find('dt')
+        dds = data_stats.find('dd')
+        for dt,dd in zip(dts,dds):
+            data[dt.text] =dd.text
+        return data
 
     def get_info(self):
         if self.__platform=='codechef':
@@ -91,6 +116,8 @@ class User:
             return self.codeforces()
         if self.__platform == 'atcoder':
             return self.atcoder()
+        if self.__platform == 'spoj':
+            return self.spoj()
         raise PlatformError('Platform not Found')
 
 
