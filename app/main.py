@@ -4,7 +4,7 @@ from app.helper import User, UsernameError,PlatformError
 app = Flask(__name__)
 api = Api(app)
 
-
+# use "foreman start" to run locally
 @app.route("/")
 def index():
     return render_template('index.html')

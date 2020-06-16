@@ -16,15 +16,17 @@ class User:
         url = "https://codechef.com/users/{}".format(self.__username)
         session = HTMLSession()
         r = session.get(url)
+        if r.status_code!=200:
+            raise UsernameError("User not found")
         try:
             rating_header = r.html.find(".rating-header",first=True)
         except:
-            raise UsernameError('User with given username not Found')
+            raise UsernameError('User not found')
 
         try:
             rating = rating_header.find(".rating-number",first=True).text
         except:
-            raise UsernameError('User with given username not Found')
+            raise UsernameError('User not found')
         max_rating = rating_header.find('small')[0].text[1:-1].split()[2]
         rating_star = len(r.html.find(".rating-star",first=True).find('span'))
         ranks = r.html.find('.rating-ranks',first=True).find('strong')
@@ -48,25 +50,47 @@ class User:
                 'global_rank':global_rank,'country_rank':country_rank,
                 'contests':get_contests_details(),}
     def codeforces(self):
-        pass
         url = 'https://codeforces.com/api/user.info?handles={}'.format(self.__username)
         r = requests.get(url)
         if r.status_code !=200:
-            raise UsernameError('User with given username not Found')
-        data = r.json()
-        if data['status']!='OK':
-            raise UsernameError('User with given username not Found')
-        data = data['result'][0]
-        data['status'] ='OK'
+            raise UsernameError('User not found')
+        r_data = r.json()
+        if r_data['status']!='OK':
+            raise UsernameError('User not found')
+        data  = dict()
+        data['status'] = 'OK'
+        data.update(r_data['result'][0])
         return data
 
+    def atcoder(self):
+        url = "https://atcoder.jp/users/{}".format(self.__username)
+        session = HTMLSession()
+        r = session.get(url)
+        if r.status_code != 200:
+            raise UsernameError('User not found')
+        data_tables = r.html.find('.dl-table')
+        if not len(data_tables):
+            raise UsernameError('User not found')
+        data = dict()
+        data['status']='OK'
+        for table in data_tables:
+            data_rows = table.find('tr')
+            for row in data_rows:
+                attr = row.find('th',first=True).text
+                val = row.find('td',first=True).text
+                data[attr]=val
+                if attr == 'Highest Rating':
+                    val = val.split()[0]
+                    data[attr]=val
+        return data
 
     def get_info(self):
         if self.__platform=='codechef':
             return self.codechef()
         if self.__platform=='codeforces':
             return self.codeforces()
-
+        if self.__platform == 'atcoder':
+            return self.atcoder()
         raise PlatformError('Platform not Found')
 
 
