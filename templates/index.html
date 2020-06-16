@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>All-CP-PLATFORMS-API</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/open-iconic-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/animate.css')}}">
+
+    <link rel="stylesheet" href="{{url_for('static',filename="css/owl.carousel.min.css")}}">
+    <link rel="stylesheet" href="{{url_for('static',filename="css/owl.theme.default.min.css")}}">
+    <link rel="stylesheet" href="{{url_for('static',filename="css/magnific-popup.css")}}">
+
+    <link rel="stylesheet" href="{{url_for('static',filename="css/aos.css")}}">
+
+    <link rel="stylesheet" href="{{url_for('static',filename="css/ionicons.min.css")}}">
+
+    <link rel="stylesheet" href="{{url_for('static',filename="css/flaticon.css")}}">
+    <link rel="stylesheet" href="{{url_for('static',filename="css/icomoon.css")}}">
+    <link rel="stylesheet" href="{{url_for('static',filename="css/style.css")}}">
+  </head>
+  <body>
+
+	  <nav class="navbar px-md-0 navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="#">All-CP-PLATFORMS <i>API </i></a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item"><a href="{{url_for('index')}}" class="nav-link">Home</a></li>
+	          <!-- <li class="nav-item"><a href="#" class="nav-link">Contact</a></li> -->
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+
+    <div class="hero-wrap js-fullheight" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+          <div class="col-md-12 ftco-animate mt-5">
+          	<h2 class="subheading mt-5">Hello! Welcome to</h2>
+            <p><span><h1 class="mb-4 mb-md-0" style="font-size:65px;">ALL-CP-PLATFORMS-API</h1></span> <span><h2>Documentation</h2></span></p>
+          	<div class="row">
+          		<div class="col-md-7">
+          			<div class="text">
+	          			<p>An API to get user Information from various online programming platforms.</p>
+	          			<div class="mouse">
+										<a href="#" class="mouse-icon">
+											<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+										</a>
+									</div>
+								</div>
+          		</div>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   	<section class="ftco-section bg-light">
+      <div class="container">
+        <div class="">
+          <ul>
+            <li>
+              <h2 class="font-weight-bolder">Request Format:</h2>
+            <br>
+            <p class="font-weight-bolder" style="font-size:20px;">http://all-cp-platforms-api.herokuapp.com/api/{platform}/{username}</p>
+            <p class="font-weight-light">Replace {platform} with the name of platform and {username} with the username of the user</p>
+            </li>
+            <br><br>
+            <li>
+
+            <h2 class="font-weight-bolder"> Supported Platforms:</h2>
+
+                <ul>
+                  <li class="font-weight-bold">CodeChef</li>
+                </ul>
+
+            </li>
+
+
+
+          </ul>
+
+        </div>
+        <div class="row mt-5">
+          <p>Note: this project in under progress. I will add more platforms soon.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <!-- <div class="row mb-1  ">
+
+          <div class="col-md">
+          </div>
+
+          <div class="col-md">
+
+          </div>
+        </div> -->
+        <div class="row">
+
+          <div class="col-md-12 text-center">
+
+            <p>Developed by <span><a href="https://github.com/sudesh1122">Sudesh Chaudhary</a></span></p>
+
+          </div>
+          <div class="col-md-12 text-center">
+
+            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{{url_for('static',filename="js/jquery.min.js")}}"></script>
+  <script src="{{url_for('static',filename="js/jquery-migrate-3.0.1.min.js")}}"></script>
+  <script src="{{url_for('static',filename="js/popper.min.js")}}"></script>
+  <script src="{{url_for('static',filename="js/bootstrap.min.js")}}"></script>
+  <script src="{{url_for('static',filename="js/jquery.easing.1.3.js")}}"></script>
+  <script src="{{url_for('static',filename="js/jquery.waypoints.min.js")}}"></script>
+  <script src="{{url_for('static',filename="js/jquery.stellar.min.js")}}"></script>
+  <script src="{{url_for('static',filename="js/owl.carousel.min.js")}}"></script>
+  <script src="{{url_for('static',filename="js/jquery.magnific-popup.min.js")}}"></script>
+  <script src="{{url_for('static',filename="js/aos.js")}}"></script>
+  <script src="{{url_for('static',filename="js/jquery.animateNumber.min.js")}}"></script>
+  <script src="{{url_for('static',filename="js/scrollax.min.js")}}"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+  <!-- <script src="js/google-map.js"></script> -->
+  <script src="{{url_for('static',filename='js/main.js')}}"></script>
+
+  </body>
+</html>
