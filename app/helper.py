@@ -43,9 +43,39 @@ class User:
                 d['country_rank'] = td[3].text
                 data.append(d)
             return data
+        def get_problems_solved():
+            div = r.html.find('.problems-solved',first=True)
+            problems_solved = dict()
+            fully_solved=dict()
+            partial_solved =dict()
+            articles = div.find('article')
+            h5s = div.find('h5')
+            for a,h in zip(articles,h5s):
+                ps = a.find('p')
+                prob_data = dict()
+                for p in ps:
+                    txt = p.text.split()
+                    type = txt[0][:-1]
+                    txt = txt[1:]
+                    prob_data[type] =list()
+                    for t in txt:
+                        if t==txt[len(txt)-1]:
+                            prob_data[type].append(t)
+                        else:
+                            prob_data[type].append(t[:-1])
+
+                if h.text.split()[0]=='Fully':
+                    fully_solved['count'] = h.text.split()[2][1:-1]
+                    fully_solved['problems'] = prob_data
+                elif h.text.split()[0]=='Partially':
+                    partial_solved['count'] = h.text.split()[2][1:-1]
+                    partial_solved['problems'] = prob_data
+            problems_solved['fully_solved'] = fully_solved
+            problems_solved['partial_solved'] = partial_solved
+            return problems_solved
         return {'status':'OK','rating':rating,'max_rating':max_rating,
                 'global_rank':global_rank,'country_rank':country_rank,
-                'contests':get_contests_details(),}
+                'contests':get_contests_details(),'problems_solved':get_problems_solved()}
     def codeforces(self):
         url = 'https://codeforces.com/api/user.info?handles={}'.format(self.__username)
         r = requests.get(url,timeout=10)

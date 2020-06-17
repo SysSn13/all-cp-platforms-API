@@ -20,8 +20,8 @@ class UserDetails(Resource):
             return {'status':'FAILED','comment':'Platform not found'}
         except ConnectionError:
             return {'status':'FAILED','comment':'Connection error'}
-        except HTTPSConnectionPool:
-            return {'status':'FAILED','comment':'timeout'}
+        # except HTTPSConnectionPool:
+        #     return {'status':'FAILED','comment':'timeout'}
         except :
             return {'status':'FAILED','comment':'Unknown Error'}
 
